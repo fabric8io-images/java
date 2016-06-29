@@ -6,21 +6,16 @@ OpenJDK 8 (JRE)
 It includes:
 
 
-* An [Agent Bond](https://github.com/fabric8io/agent-bond) agent with [Jolokia](http://www.jolokia.org) 
-  and Prometheus' [jmx_exporter](https://github.com/prometheus/jmx_exporter). 
-  The agent is installed as `/opt/agent-bond/agent-bond.jar`. See below for configuration options. 
+* An [Agent Bond](https://github.com/fabric8io/agent-bond) agent with [Jolokia](http://www.jolokia.org) and Prometheus' [jmx_exporter](https://github.com/prometheus/jmx_exporter). The agent is installed as `/opt/agent-bond/agent-bond.jar`. See below for configuration options.
 
 
 * A startup script [`/app/run-java.sh`](#startup-script-run-javash) for starting up Java applications.
 
 ### Agent Bond
 
-In order to enable Jolokia for your application you should use this 
-image as a base image (via `FROM`) and use the output of `agent-bond-opts` in 
-your startup scripts to include it in for the Java startup options. 
+In order to enable Jolokia for your application you should use this image as a base image (via `FROM`) and use the output of `agent-bond-opts` in your startup scripts to include it in for the Java startup options.
 
-For example, the following snippet can be added to a script starting up your 
-Java application
+For example, the following snippet can be added to a script starting up your Java application
 
     # ...
     export JAVA_OPTIONS="$JAVA_OPTIONS $(agent-bond-opts)"
@@ -29,10 +24,9 @@ Java application
 The following versions and defaults are used:
 
 * [Jolokia](http://www.jolokia.org) : version **undefined** and port **8778**
-* [jmx_exporter](https://github.com/prometheus/jmx_exporter): version **undefined** and port **9779**  
+* [jmx_exporter](https://github.com/prometheus/jmx_exporter): version **undefined** and port **9779**
 
-You can influence the behaviour of `agent-bond-opts` by setting various environment 
-variables:
+You can influence the behaviour of `agent-bond-opts` by setting various environment variables:
 
 ### Agent-Bond Options
 
@@ -75,10 +69,7 @@ Some options for integration in various environments:
 
 ### Startup Script /run-java.sh
 
-The default command for this image is `/run-java.sh`. Its purpose it
-to fire up Java applications which are provided as fat-jars, including
-all dependencies or more classical from a main class, where the
-classpath is build up from all jars within a directory.x1
+The default command for this image is [/run-java.sh](https://github.com/fabric8io/run-java-sh). Its purpose it to fire up Java applications which are provided as fat-jars, including all dependencies or more classical from a main class, where the classpath is build up from all jars within a directory.x1
 
 The run script can be influenced by the following environment variables:
 
