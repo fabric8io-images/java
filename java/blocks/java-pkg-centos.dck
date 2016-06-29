@@ -1,0 +1,5 @@
+RUN yum install -y \
+       java-{{= fp.config.version.version }}-openjdk {{? fp.param.type === "jdk" }}\
+       java-{{= fp.config.version.version }}-openjdk-devel
+{{?}}
+ENV JAVA_HOME /etc/alternatives/jre

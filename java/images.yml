@@ -1,0 +1,50 @@
+---
+fish-pepper:
+  params:
+    - base
+    - version
+    - type
+  name: "fabric8/java"
+  build: "1.1.0"
+
+# Used for escaping in 'agent-bond-opts' where the same delimiters are used
+abSepOpen: "{{"
+abSepClosed: "}}"
+
+config:
+  base:
+    default:
+      agent: "agent-bond"
+    alpine:
+      from: "alpine:3.4"
+      version: "3.4"
+      description: "Alpine"
+    centos:
+      from: "centos:7"
+      version: "7"
+      description: "CentOS"
+    jboss:
+      from: "jboss/base-jdk"
+      user: "jboss"
+      # Use the major version
+      tagFromMajorVersion: true
+      description: "JBoss with OpenJDK"
+  version:
+    openjdk7:
+      version: "1.7.0"
+      description: "OpenJDK 7"
+      major: 7
+    openjdk8:
+      from: "jboss-jdk:8"
+      version: "1.8.0"
+      description: "OpenJDK 8"
+      major: 8
+  type:
+    jre:
+      description: "Java Runtime Environment (JRE)"
+      # Ignore JREs for JBoss image since there are no JRE variants for them available
+      fish-pepper:
+        ignore-for:
+           - [ "jboss", "*" ]
+    jdk:
+      description: "Java Development Kit (JDK)"

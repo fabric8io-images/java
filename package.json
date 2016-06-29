@@ -1,0 +1,14 @@
+{
+  "name": "base-images",
+  "description": "Base images for Fabric8",
+  "version": "0.0.1",
+  "author": {
+    "name": "Roland Huss",
+    "email": "npm@ro14nd.de",
+    "url": "https://ro14nd.de"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "fish-pepper": "*"
+  }
+}
