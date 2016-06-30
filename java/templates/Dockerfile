@@ -2,8 +2,10 @@ FROM {{= fp.config.base.from + (fp.config.base.tagFromMajorVersion ? ":" + fp.co
 
 USER root
 
-RUN mkdir /app
-ENV JAVA_APP_DIR /app
+RUN mkdir -p /app/data
+RUN chmod 1777 /app/data
+ENV JAVA_APP_DIR /app \
+    JAVA_DATA_DIR /app/data
 
 {{= fp.block("java-pkg-" + fp.param.base) || ''}}
 {{= fp.block(fp.config.base.agent, "install", { dest: "/opt/run-java-options" }) }}

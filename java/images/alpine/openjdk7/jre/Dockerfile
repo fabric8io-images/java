@@ -2,8 +2,10 @@ FROM alpine:3.4
 
 USER root
 
-RUN mkdir /app
-ENV JAVA_APP_DIR /app
+RUN mkdir -p /app/data
+RUN chmod 1777 /app/data
+ENV JAVA_APP_DIR /app \
+    JAVA_DATA_DIR /app/data
 
 
 RUN apk add --update \

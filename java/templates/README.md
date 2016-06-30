@@ -1,7 +1,6 @@
 ## Fabric8 Java Base Image {{= fp.config.version.description }} ({{= fp.param.type.toUpperCase() }})
 
-This image is based on {{= fp.config.base.description }} and provides
-{{= fp.config.version.description }} ({{= fp.param.type.toUpperCase() }})
+This image is based on {{= fp.config.base.description }} and provides {{= fp.config.version.description }} ({{= fp.param.type.toUpperCase() }})
 
 It includes:
 

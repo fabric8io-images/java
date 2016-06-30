@@ -1,7 +1,6 @@
 ## Fabric8 Java Base Image OpenJDK 8 (JDK)
 
-This image is based on JBoss with OpenJDK and provides
-OpenJDK 8 (JDK)
+This image is based on JBoss with OpenJDK and provides OpenJDK 8 (JDK)
 
 It includes:
 

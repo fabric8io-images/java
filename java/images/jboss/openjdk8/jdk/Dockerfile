@@ -2,8 +2,10 @@ FROM jboss/base-jdk:8
 
 USER root
 
-RUN mkdir /app
-ENV JAVA_APP_DIR /app
+RUN mkdir -p /app/data
+RUN chmod 1777 /app/data
+ENV JAVA_APP_DIR /app \
+    JAVA_DATA_DIR /app/data
 
 
 # Agent bond including Jolokia and jmx_exporter

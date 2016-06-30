@@ -1,7 +1,6 @@
 ## Fabric8 Java Base Image OpenJDK 8 (JRE)
 
-This image is based on CentOS and provides
-OpenJDK 8 (JRE)
+This image is based on CentOS and provides OpenJDK 8 (JRE)
 
 It includes:
 
