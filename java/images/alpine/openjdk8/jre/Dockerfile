@@ -4,8 +4,8 @@ USER root
 
 RUN mkdir -p /app/data
 RUN chmod 1777 /app/data
-ENV JAVA_APP_DIR /app \
-    JAVA_DATA_DIR /app/data
+ENV JAVA_APP_DIR=/app \
+    JAVA_DATA_DIR=/app/data
 
 
 RUN echo "http://dl-4.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
