@@ -109,4 +109,4 @@ Any arguments given during startup are taken over as arguments to the Java app.
 
 * Base-Image: **JBoss with OpenJDK undefined**
 * Java: **OpenJDK 8 1.8.0** (Java Development Kit (JDK))
-* Agent-Bond: **0.1.3** (Jolokia 2.0.0-M1, jmx_exporter 0.6)
+* Agent-Bond: **0.1.4** (Jolokia 2.0.0-M2, jmx_exporter 0.6)
