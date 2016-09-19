@@ -1,5 +1,7 @@
 RUN yum install -y \
        java-{{= fp.config.version.version }}-openjdk {{? fp.param.type === "jdk" }}\
-       java-{{= fp.config.version.version }}-openjdk-devel
+       java-{{= fp.config.version.version }}-openjdk-devel\
+    && echo securerandom.source=file:/dev/urandom >> /usr/lib/jvm/java/jre/lib/security/java.security 
+
 {{?}}
 ENV JAVA_HOME /etc/alternatives/jre

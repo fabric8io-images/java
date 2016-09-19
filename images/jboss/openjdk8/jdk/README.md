@@ -39,8 +39,8 @@ Agent bond itself can be influenced with the following environment variables:
 #### Jolokia configuration
 
 * **AB_JOLOKIA_CONFIG** : If set uses this file (including path) as Jolokia JVM agent properties (as described 
-  in Jolokia's [reference manual](http://www.jolokia.org/reference/html/agents.html#agents-jvm)). 
-  By default this is `/opt/jolokia/jolokia.properties`. 
+  in Jolokia's [reference manual](http://www.jolokia.org/reference/html/agents.html#agents-jvm)).
+  By default this is `/opt/jolokia/jolokia.properties`.
 * **AB_JOLOKIA_HOST** : Host address to bind to (Default: `0.0.0.0`)
 * **AB_JOLOKIA_PORT** : Port to use (Default: `8778`)
 * **AB_JOLOKIA_USER** : User for authentication. By default authentication is switched off.
@@ -58,7 +58,7 @@ Some options for integration in various environments:
   parameter will automatically switch Jolokia into https communication mode. The default CA cert is set to 
   `/var/run/secrets/kubernetes.io/serviceaccount/ca.crt` 
   
-#### jmx_exporter configuration 
+#### jmx_exporter configuration
 
 * **AB_JMX_EXPORTER_OPTS** : Configuration to use for `jmx_exporter` (in the format `<port>:<path to config>`)
 * **AB_JMX_EXPORTER_PORT** : Port to use for the JMX Exporter. Default: `9779`
@@ -75,12 +75,12 @@ The run script can be influenced by the following environment variables:
 * **JAVA_APP_DIR** the directory where the application resides. All paths in your application are relative to this directory.
 * **JAVA_LIB_DIR** directory holding the Java jar files as well an optional `classpath` file which holds the classpath. Either as a single line classpath (colon separated) or with jar files listed line-by-line. If not set **JAVA_LIB_DIR** is the same as **JAVA_APP_DIR**.
 * **JAVA_OPTIONS** options to add when calling `java`
-* **JAVA_MAX_MEM_RATIO** is used when no `-Xmx` option is given in `JAVA_OPTIONS`. This is used to calculate a default maximal Heap Memory based on a containers restriction. If this script is used in a Docker container without any memory constraints for the container then this option has no effect. If there is a memory constraint then `-Xmx` is set to a ratio of the container available memory as set here. The default is 85 which means 85% of the available memory is used as an upper boundary. You can skip this mechanism by setting this value to 0 in which case no `-Xmx` option is added on behalf od this script. 
+* **JAVA_MAX_MEM_RATIO** is used when no `-Xmx` option is given in `JAVA_OPTIONS`. This is used to calculate a default maximal Heap Memory based on a containers restriction. If this script is used in a Docker container without any memory constraints for the container then this option has no effect. If there is a memory constraint then `-Xmx` is set to a ratio of the container available memory as set here. The default is 85 which means 85% of the available memory is used as an upper boundary. You can skip this mechanism by setting this value to 0 in which case no `-Xmx` option is added on behalf od this script.
 * **JAVA_MAIN_CLASS** A main class to use as argument for `java`. When this environment variable is given, all jar files in `$JAVA_APP_DIR` are added to the classpath as well as `$JAVA_LIB_DIR`.
 * **JAVA_APP_JAR** A jar file with an appropriate manifest so that it can be started with `java -jar` if no `$JAVA_MAIN_CLASS` is set. In all cases this jar file is added to the classpath, too.
 * **JAVA_APP_NAME** Name to use for the process
 * **JAVA_CLASSPATH** the classpath to use. If not given, the script checks for a file `${JAVA_APP_DIR}/classpath` and use its content literally as classpath. If this file doesn't exists all jars in the app dir are added (`classes:${JAVA_APP_DIR}/*`).
-* **JAVA_ENABLE_DEBUG** If set remote debugging will be switched on
+* **JAVA_DEBUG** If set remote debugging will be switched on
 * **JAVA_DEBUG_PORT** Port used for remote debugging. Default: 5005
 
 If neither `$JAVA_APP_JAR` nor `$JAVA_MAIN_CLASS` is given, `$JAVA_APP_DIR` is checked for a single JAR file which is taken as `$JAVA_APP_JAR`. If no or more then one jar file is found, the script throws an error.

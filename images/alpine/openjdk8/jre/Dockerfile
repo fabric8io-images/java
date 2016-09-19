@@ -12,7 +12,8 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/community" >> /etc/apk/reposit
  && apk add --update \
     curl \
     openjdk8-jre-base \
- && rm /var/cache/apk/*
+ && rm /var/cache/apk/* \
+ && echo securerandom.source=file:/dev/urandom >> /usr/lib/jvm/default-jvm/jre/lib/security/java.security 
 
 # Agent bond including Jolokia and jmx_exporter
 ADD agent-bond-opts /opt/run-java-options
@@ -25,9 +26,8 @@ ADD jmx_exporter_config.yml /opt/agent-bond/
 EXPOSE 8778 9779
 
 # Add run script as /app/run-java.sh and make it executable
-COPY run-java.sh /app/run-java.sh
-COPY java-container-options /app/java-container-options
-RUN chmod 755 /app/run-java.sh /app/java-container-options
+COPY run-java.sh debug-options java-container-options /app/
+RUN chmod 755 /app/run-java.sh /app/java-container-options /app/debug-options
 
 
 

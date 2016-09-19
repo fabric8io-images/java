@@ -9,7 +9,9 @@ ENV JAVA_APP_DIR=/app \
 
 RUN yum install -y \
        java-1.8.0-openjdk \
-       java-1.8.0-openjdk-devel
+       java-1.8.0-openjdk-devel\
+    && echo securerandom.source=file:/dev/urandom >> /usr/lib/jvm/java/jre/lib/security/java.security 
+
 
 ENV JAVA_HOME /etc/alternatives/jre
 
@@ -24,9 +26,8 @@ ADD jmx_exporter_config.yml /opt/agent-bond/
 EXPOSE 8778 9779
 
 # Add run script as /app/run-java.sh and make it executable
-COPY run-java.sh /app/run-java.sh
-COPY java-container-options /app/java-container-options
-RUN chmod 755 /app/run-java.sh /app/java-container-options
+COPY run-java.sh debug-options java-container-options /app/
+RUN chmod 755 /app/run-java.sh /app/java-container-options /app/debug-options
 
 
 
