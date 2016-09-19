@@ -17,6 +17,6 @@ fish-pepper:
 # External blocks
 blocks:
   # run-java.sh for starting up Java processes
-  - "https://github.com/fabric8io/run-java-sh.git"
+  - "https://github.com/fabric8io-images/run-java-sh.git"
   # agent bond for export Jolokia and jmx_exporter data
   - "https://github.com/fabric8io/agent-bond.git"
