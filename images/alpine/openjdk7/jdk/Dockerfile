@@ -8,11 +8,13 @@ ENV JAVA_APP_DIR=/app \
     JAVA_DATA_DIR=/app/data
 
 
+# /dev/urandom is used as random source, which is prefectly safe
+# according to http://www.2uo.de/myths-about-urandom/
 RUN apk add --update \
     curl \
     openjdk7 \
  && rm /var/cache/apk/* \
- && echo securerandom.source=file:/dev/urandom >> /usr/lib/jvm/default-jvm/jre/lib/security/java.security 
+ && echo "securerandom.source=file:/dev/urandom" >> /usr/lib/jvm/default-jvm/jre/lib/security/java.security
 
 # Agent bond including Jolokia and jmx_exporter
 ADD agent-bond-opts /opt/run-java-options

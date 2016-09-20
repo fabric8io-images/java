@@ -7,10 +7,12 @@ RUN chmod 1777 /app/data
 ENV JAVA_APP_DIR=/app \
     JAVA_DATA_DIR=/app/data
 
+# /dev/urandom is used as random source, which is prefectly safe
+# according to http://www.2uo.de/myths-about-urandom/
 RUN yum install -y \
-       java-1.8.0-openjdk \
-       java-1.8.0-openjdk-devel\
-    && echo securerandom.source=file:/dev/urandom >> /usr/lib/jvm/java/jre/lib/security/java.security 
+       java-1.8.0-openjdk  \
+       java-1.8.0-openjdk-devel \
+    && echo "securerandom.source=file:/dev/urandom" >> /usr/lib/jvm/java/jre/lib/security/java.security
 
 
 ENV JAVA_HOME /etc/alternatives/jre
