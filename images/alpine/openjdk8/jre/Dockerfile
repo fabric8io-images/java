@@ -12,7 +12,8 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/edge/community" >> /etc/apk/reposit
  && apk add --update \
     curl \
     openjdk8-jre-base \
- && rm /var/cache/apk/*
+ && rm /var/cache/apk/* \
+ && echo securerandom.source=file:/dev/urandom >> /usr/lib/jvm/default-jvm/jre/lib/security/java.security 
 
 # Agent bond including Jolokia and jmx_exporter
 ADD agent-bond-opts /opt/run-java-options

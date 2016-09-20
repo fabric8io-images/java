@@ -9,7 +9,9 @@ ENV JAVA_APP_DIR=/app \
 
 RUN yum install -y \
        java-1.7.0-openjdk \
-       java-1.7.0-openjdk-devel
+       java-1.7.0-openjdk-devel\
+    && echo securerandom.source=file:/dev/urandom >> /usr/lib/jvm/java/jre/lib/security/java.security 
+
 
 ENV JAVA_HOME /etc/alternatives/jre
 

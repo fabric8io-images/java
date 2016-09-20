@@ -11,7 +11,8 @@ ENV JAVA_APP_DIR=/app \
 RUN apk add --update \
     curl \
     openjdk7-jre-base \
- && rm /var/cache/apk/*
+ && rm /var/cache/apk/* \
+ && echo securerandom.source=file:/dev/urandom >> /usr/lib/jvm/default-jvm/jre/lib/security/java.security 
 
 # Agent bond including Jolokia and jmx_exporter
 ADD agent-bond-opts /opt/run-java-options
