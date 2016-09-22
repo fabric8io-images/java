@@ -2,10 +2,10 @@ FROM centos:7
 
 USER root
 
-RUN mkdir -p /app/data
-RUN chmod 1777 /app/data
-ENV JAVA_APP_DIR=/app \
-    JAVA_DATA_DIR=/app/data
+RUN mkdir -p /deployments
+
+# JAVA_APP_DIR is used by run-java.sh for finding the binaries
+ENV JAVA_APP_DIR=/deployments
 
 # /dev/urandom is used as random source, which is prefectly safe
 # according to http://www.2uo.de/myths-about-urandom/
@@ -23,11 +23,11 @@ RUN mkdir -p /opt/agent-bond \
 ADD jmx_exporter_config.yml /opt/agent-bond/
 EXPOSE 8778 9779
 
-# Add run script as /app/run-java.sh and make it executable
-COPY run-java.sh debug-options java-container-options /app/
-RUN chmod 755 /app/run-java.sh /app/java-container-options /app/debug-options
+# Add run script as /deployments/run-java.sh and make it executable
+COPY run-java.sh debug-options java-container-options /deployments/
+RUN chmod 755 /deployments/run-java.sh /deployments/java-container-options /deployments/debug-options
 
 
 
 
-CMD [ "/app/run-java.sh" ]
+CMD [ "/deployments/run-java.sh" ]

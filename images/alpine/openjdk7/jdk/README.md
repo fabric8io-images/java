@@ -8,7 +8,7 @@ It includes:
 * An [Agent Bond](https://github.com/fabric8io/agent-bond) agent with [Jolokia](http://www.jolokia.org) and Prometheus' [jmx_exporter](https://github.com/prometheus/jmx_exporter). The agent is installed as `/opt/agent-bond/agent-bond.jar`. See below for configuration options.
 
 
-* A startup script [`/app/run-java.sh`](#startup-script-run-javash) for starting up Java applications.
+* A startup script [`/deployments/run-java.sh`](#startup-script-run-javash) for starting up Java applications.
 
 ### Agent Bond
 

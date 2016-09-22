@@ -10,7 +10,7 @@ It includes:
 *  A [Jolokia](http://www.jolokia.org) agent. See below how to configure this.
 {{?}}
 
-* A startup script [`/app/run-java.sh`](#startup-script-run-javash) for starting up Java applications.
+* A startup script [`/deployments/run-java.sh`](#startup-script-run-javash) for starting up Java applications.
 
 ### Agent Bond
 
