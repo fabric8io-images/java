@@ -27,8 +27,8 @@ ADD jmx_exporter_config.yml /opt/agent-bond/
 EXPOSE 8778 9779
 
 # Add run script as /deployments/run-java.sh and make it executable
-COPY run-java.sh debug-options java-container-options /deployments/
-RUN chmod 755 /deployments/run-java.sh /deployments/java-container-options /deployments/debug-options
+COPY run-java.sh debug-options container-limits java-default-options /deployments/
+RUN chmod 755 /deployments/run-java.sh /deployments/java-default-options /deployments/container-limits /deployments/debug-options
 
 
 
