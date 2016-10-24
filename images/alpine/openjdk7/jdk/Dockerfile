@@ -1,4 +1,4 @@
-FROM alpine:3.4
+FROM project31/aarch64-alpine:3.4
 
 USER root
 

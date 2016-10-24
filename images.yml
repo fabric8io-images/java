@@ -17,7 +17,7 @@ config:
       agent: "agent-bond"
       baseDir: "/deployments"
     alpine:
-      from: "alpine:3.4"
+      from: "project31/aarch64-alpine:3.4"
       version: "3.4"
       description: "Alpine"
     centos:
