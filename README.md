@@ -1,4 +1,4 @@
-## Fabric8 Java Base Images
+## Fabric8 Java Base Images for aarch64 architectures
 
 This is a repository for Java Docker base images used in various fabric8 projects.
 
