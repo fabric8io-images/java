@@ -1,4 +1,4 @@
-FROM centos:7
+FROM project31/aarch64-centos:7
 
 USER root
 
