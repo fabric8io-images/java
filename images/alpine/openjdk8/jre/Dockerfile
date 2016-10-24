@@ -11,7 +11,7 @@ ENV JAVA_APP_DIR=/deployments
 # /dev/urandom is used as random source, which is prefectly safe
 # according to http://www.2uo.de/myths-about-urandom/
 RUN echo "http://dl-4.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
- && apk add --update \
+ && apk add --update --allow-untrusted \
     curl \
     openjdk8-jre-base \
  && rm /var/cache/apk/* \
