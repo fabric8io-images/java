@@ -36,3 +36,4 @@ All images add the following features:
 
 How to use these images and what environment variables can be used are
 described in the associated [README](images/centos/openjdk8/jdk/README.md) files.
+
