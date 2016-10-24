@@ -7,12 +7,12 @@ version:
   jmxExporter: "0.6"
 
 # Who to blame
-maintainer: "rhuss@redhat.com"
+maintainer: "kstam@redhat.com"
 
 # Meta info influencing the build
 fish-pepper:
   # Docker Repo User
-  repoUser: "fabric8"
+  repoUser: "project31"
 
 # External blocks
 blocks:

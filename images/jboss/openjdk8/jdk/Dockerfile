@@ -1,4 +1,4 @@
-FROM jboss/base-jdk:8
+FROM project31/aarch64-jboss-base-jdk:8
 
 USER root
 

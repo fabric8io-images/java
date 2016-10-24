@@ -4,7 +4,7 @@ fish-pepper:
     - base
     - version
     - type
-  name: "fabric8/java"
+  name: "project31/aarch64-java"
   build: "1.2.1"
 
 # Used for escaping in 'agent-bond-opts' where the same delimiters are used
@@ -21,11 +21,11 @@ config:
       version: "3.4"
       description: "Alpine"
     centos:
-      from: "centos:7"
+      from: "project31/aarch64-centos:7"
       version: "7"
       description: "CentOS"
     jboss:
-      from: "jboss/base-jdk"
+      from: "project31/aarch64-jboss-base-jdk"
       user: "jboss"
       # Use the major version
       tagFromMajorVersion: true
