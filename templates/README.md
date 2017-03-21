@@ -24,8 +24,8 @@ For example, the following snippet can be added to a script starting up your Jav
 
 The following versions and defaults are used:
 
-* [Jolokia](http://www.jolokia.org) : version **{{= fp.jolokiaVersion }}** and port **8778**
-* [jmx_exporter](https://github.com/prometheus/jmx_exporter): version **{{= fp.jmxExporterVersion }}** and port **9779**
+* [Jolokia](http://www.jolokia.org) : version **{{= fp.version.jolokia }}** and port **8778**
+* [jmx_exporter](https://github.com/prometheus/jmx_exporter): version **{{= fp.version.jmxExporter }}** and port **9779**
 
 You can influence the behaviour of `agent-bond-opts` by setting various environment variables:
 
