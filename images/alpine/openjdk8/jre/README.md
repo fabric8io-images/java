@@ -68,7 +68,9 @@ Some options for integration in various environments:
 
 ### Startup Script /run-java.sh
 
-The default command for this image is [/run-java.sh](https://github.com/fabric8io/run-java-sh). Its purpose it to fire up Java applications which are provided as fat-jars, including all dependencies or more classical from a main class, where the classpath is build up from all jars within a directory.x1
+The default command for this image is [/deployments/run-java.sh](https://github.com/fabric8io/run-java-sh). Its purpose it to fire up Java applications which are provided as fat-jars, including all dependencies or more classical from a main class, where the classpath is build up from all jars within a directory.
+
+For these images the variable **JAVA_APP_DIR** has the default value `/deployments`
 
 The run script can be influenced by the following environment variables:
 
