@@ -11,7 +11,7 @@ ENV JAVA_APP_DIR=/deployments
 # Agent bond including Jolokia and jmx_exporter
 ADD agent-bond-opts /opt/run-java-options
 RUN mkdir -p /opt/agent-bond \
- && curl http://central.maven.org/maven2/io/fabric8/agent-bond-agent/0.1.4/agent-bond-agent-0.1.4.jar \
+ && curl http://central.maven.org/maven2/io/fabric8/agent-bond-agent/1.0.1/agent-bond-agent-1.0.1.jar \
           -o /opt/agent-bond/agent-bond.jar \
  && chmod 444 /opt/agent-bond/agent-bond.jar \
  && chmod 755 /opt/run-java-options
