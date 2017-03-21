@@ -31,7 +31,7 @@ You can influence the behaviour of `agent-bond-opts` by setting various environm
 
 {{= fp.block(fp.config.base.agent,'readme',{ 'fp-no-files' : true }) }}
 
-### Startup Script /run-java.sh
+### Startup Script run-java.sh
 
 The default command for this image is [{{= fp.config.base.baseDir }}/run-java.sh](https://github.com/fabric8io/run-java-sh). Its purpose it to fire up Java applications which are provided as fat-jars, including all dependencies or more classical from a main class, where the classpath is build up from all jars within a directory.
 
