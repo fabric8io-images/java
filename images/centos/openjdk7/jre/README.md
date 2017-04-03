@@ -22,7 +22,7 @@ For example, the following snippet can be added to a script starting up your Jav
 
 The following versions and defaults are used:
 
-* [Jolokia](http://www.jolokia.org) : version **2.0.0-M2** and port **8778**
+* [Jolokia](http://www.jolokia.org) : version **1.3.6** and port **8778**
 * [jmx_exporter](https://github.com/prometheus/jmx_exporter): version **0.9** and port **9779**
 
 You can influence the behaviour of `agent-bond-opts` by setting various environment variables:
@@ -118,4 +118,4 @@ Any arguments given during startup are taken over as arguments to the Java app.
 
 * Base-Image: **CentOS 7**
 * Java: **OpenJDK 7 1.7.0** (Java Runtime Environment (JRE))
-* Agent-Bond: **1.0.1** (Jolokia 2.0.0-M2, jmx_exporter 0.9)
+* Agent-Bond: **1.0.2** (Jolokia 1.3.6, jmx_exporter 0.9)

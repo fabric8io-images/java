@@ -2,8 +2,8 @@
 
 # Versions of support libs
 version:
-  agentBond: "1.0.1"
-  jolokia: "2.0.0-M2"
+  agentBond: "1.0.2"
+  jolokia: "1.3.6"
   jmxExporter: "0.9"
 
 # Who to blame
@@ -17,6 +17,10 @@ fish-pepper:
 # External blocks
 blocks:
   # run-java.sh for starting up Java processes
-  - "https://github.com/fabric8io-images/run-java-sh.git"
+  - type: "git"
+    url: "https://github.com/fabric8io-images/run-java-sh.git"
+    tag: v1.0.0
   # agent bond for export Jolokia and jmx_exporter data
-  - "https://github.com/fabric8io/agent-bond.git"
+  - type: "git"
+    url: "https://github.com/fabric8io/agent-bond.git"
+    tag: v1.0.2

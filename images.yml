@@ -17,8 +17,8 @@ config:
       agent: "agent-bond"
       baseDir: "/deployments"
     alpine:
-      from: "alpine:3.4"
-      version: "3.4"
+      from: "alpine:3.5"
+      version: "3.5"
       description: "Alpine"
     centos:
       from: "centos:7"
