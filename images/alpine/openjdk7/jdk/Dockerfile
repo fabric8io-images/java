@@ -12,7 +12,7 @@ ENV JAVA_APP_DIR=/deployments
 # according to http://www.2uo.de/myths-about-urandom/
 RUN apk add --update \
     curl \
-    openjdk7 \
+    openjdk7=7.121.2.6.8-r0 \
  && rm /var/cache/apk/* \
  && echo "securerandom.source=file:/dev/urandom" >> /usr/lib/jvm/default-jvm/jre/lib/security/java.security
 

@@ -53,7 +53,7 @@ Agent bond itself can be influenced with the following environment variables:
 
 Some options for integration in various environments:
 
-* **AB_JOLOKIA_AUTH_OPENSHIFT** : Switch on client authentication for OpenShift TSL communication. The value of this 
+* **AB_JOLOKIA_AUTH_OPENSHIFT** : Switch on client authentication for OpenShift TLS communication. The value of this 
   parameter can be a relative distinguished name which must be contained in a presented client certificate. Enabling this
   parameter will automatically switch Jolokia into https communication mode. The default CA cert is set to 
   `/var/run/secrets/kubernetes.io/serviceaccount/ca.crt` 
