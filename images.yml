@@ -18,7 +18,7 @@ config:
       baseDir: "/deployments"
     alpine:
       from: "alpine:3.5"
-      version: "3.5"
+      version: "3.6"
       description: "Alpine"
       # Alternative packages: 8.121.13-r2 (edge, needs extra sources.list), 8.111.14-r0
       javaPackage: 
