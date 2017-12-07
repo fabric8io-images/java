@@ -5,7 +5,8 @@ USER root
 RUN mkdir -p /deployments
 
 # JAVA_APP_DIR is used by run-java.sh for finding the binaries
-ENV JAVA_APP_DIR=/deployments
+ENV JAVA_APP_DIR=/deployments \
+    JAVA_MAJOR_VERSION=7
 
 # /dev/urandom is used as random source, which is prefectly safe
 # according to http://www.2uo.de/myths-about-urandom/
