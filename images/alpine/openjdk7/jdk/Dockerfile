@@ -1,4 +1,4 @@
-FROM alpine:3.5
+FROM alpine:3.7
 
 USER root
 
@@ -8,18 +8,18 @@ RUN mkdir -p /deployments
 ENV JAVA_APP_DIR=/deployments
 
 
-# /dev/urandom is used as random source, which is prefectly safe
+# /dev/urandom is used as random source, which is perfectly safe
 # according to http://www.2uo.de/myths-about-urandom/
 RUN apk add --update \
     curl \
-    openjdk7=7.121.2.6.8-r0 \
+    openjdk7=7.151.2.6.11-r0 \
  && rm /var/cache/apk/* \
  && echo "securerandom.source=file:/dev/urandom" >> /usr/lib/jvm/default-jvm/jre/lib/security/java.security
 
 # Agent bond including Jolokia and jmx_exporter
 ADD agent-bond-opts /opt/run-java-options
 RUN mkdir -p /opt/agent-bond \
- && curl http://central.maven.org/maven2/io/fabric8/agent-bond-agent/1.0.2/agent-bond-agent-1.0.2.jar \
+ && curl http://central.maven.org/maven2/io/fabric8/agent-bond-agent/1.1.1/agent-bond-agent-1.1.1.jar \
           -o /opt/agent-bond/agent-bond.jar \
  && chmod 444 /opt/agent-bond/agent-bond.jar \
  && chmod 755 /opt/run-java-options
@@ -27,8 +27,8 @@ ADD jmx_exporter_config.yml /opt/agent-bond/
 EXPOSE 8778 9779
 
 # Add run script as /deployments/run-java.sh and make it executable
-COPY run-java.sh debug-options container-limits java-default-options /deployments/
-RUN chmod 755 /deployments/run-java.sh /deployments/java-default-options /deployments/container-limits /deployments/debug-options
+COPY run-java.sh /deployments/
+RUN chmod 755 /deployments/run-java.sh
 
 
 

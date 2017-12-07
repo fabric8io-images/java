@@ -2,9 +2,9 @@
 
 # Versions of support libs
 version:
-  agentBond: "1.0.2"
-  jolokia: "1.3.6"
-  jmxExporter: "0.9"
+  agentBond: "1.1.1"
+  jolokia: "1.3.7"
+  jmxExporter: "0.1.0"
 
 # Who to blame
 maintainer: "rhuss@redhat.com"
@@ -19,8 +19,8 @@ blocks:
   # run-java.sh for starting up Java processes
   - type: "git"
     url: "https://github.com/fabric8io-images/run-java-sh.git"
-    tag: v1.0.1
+    tag: v1.1.1
   # agent bond for export Jolokia and jmx_exporter data
   - type: "git"
     url: "https://github.com/fabric8io/agent-bond.git"
-    tag: v1.0.2
+    tag: v1.1.2

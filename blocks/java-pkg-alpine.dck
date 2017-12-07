@@ -1,5 +1,5 @@
 {{ var major = fp.config.version.major; }}
-# /dev/urandom is used as random source, which is prefectly safe
+# /dev/urandom is used as random source, which is perfectly safe
 # according to http://www.2uo.de/myths-about-urandom/
 RUN apk add --update \
     curl \
