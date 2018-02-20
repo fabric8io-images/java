@@ -72,13 +72,13 @@ if [ -z "${AB_OFF:-}" ]; then
      fi
      if [ -n "${AB_JOLOKIA_HTTPS:-}" ]; then
         jolokia_opts="${jolokia_opts}${jsep}protocol=https"
-        use_https=1
+        https_used=1
         jsep=","
      fi
      # Integration with OpenShift client cert auth
      if [ -n "${AB_JOLOKIA_AUTH_OPENSHIFT:-}" ]; then
         auth_opts="useSslClientAuthentication=true,extraClientCheck=true"
-        if [ -z "${use_https}" ]; then
+        if [ -z "${https_used+x}" ]; then
           auth_opts="${auth_opts},protocol=https"
         fi
         if [ $(is_in_jolokia_opts "caCert") != "yes" ]; then

@@ -22,8 +22,8 @@ For example, the following snippet can be added to a script starting up your Jav
 
 The following versions and defaults are used:
 
-* [Jolokia](http://www.jolokia.org) : version **1.3.7** and port **8778**
-* [jmx_exporter](https://github.com/prometheus/jmx_exporter): version **0.1.0** and port **9779**
+* [Jolokia](http://www.jolokia.org) : version **1.5.0** and port **8778**
+* [jmx_exporter](https://github.com/prometheus/jmx_exporter): version **0.2.0** and port **9779**
 
 You can influence the behaviour of `agent-bond-opts` by setting various environment variables:
 
@@ -72,9 +72,26 @@ The default command for this image is [/deployments/run-java.sh](https://github.
 
 For these images the variable **JAVA_APP_DIR** has the default value `/deployments`
 
-The run script can be influenced by the following environment variables:
 
-* **JAVA_APP_DIR** the directory where the application resides. All paths in your application are relative to this directory.
+### run-java.sh
+
+This general purpose startup script is optimized for running Java application from within containers. It is called like
+
+```
+./run-java.sh <sub-command> <options>
+```
+`run-java.sh` knows two sub-commands:
+
+* `options` to print out JVM option which can be used for own invocation of Java apps (like Maven or Tomcat). It respects container constraints and includes all magic which is used by this script
+* `run` executes a Java application as described below. This is also the default command so you can skip adding this command.
+
+### Running a Java application
+
+When no subcommand is given (or when you provide the default subcommand `run`), then by default this scripts starts up Java application.
+
+The startup process is configured mostly via environment variables:
+
+* **JAVA_APP_DIR** the directory where the application resides. All paths in your application are relative to this directory. By default it is the same directory where this startup script resides.
 * **JAVA_LIB_DIR** directory holding the Java jar files as well an optional `classpath` file which holds the classpath. Either as a single line classpath (colon separated) or with jar files listed line-by-line. If not set **JAVA_LIB_DIR** is the same as **JAVA_APP_DIR**.
 * **JAVA_OPTIONS** options to add when calling `java`
 * **JAVA_MAJOR_VERSION** can be 7,8 or 9. If the version is set then only options suitable for this version are used. Actually only 7 is required to set to remove some options known only to Java > 8
@@ -117,11 +134,49 @@ The startup script also exposes some environment variables describing container 
 * **CONTAINER_CORE_LIMIT** a calculated core limit as described in https://www.kernel.org/doc/Documentation/scheduler/sched-bwc.txt
 * **CONTAINER_MAX_MEMORY** memory limit given to the container
 
-Any arguments given during startup are taken over as arguments to the Java app.
+Any arguments given to the script are given through directly as argument to the Java application.
+
+Example:
+
+```
+# Set the application directory directly
+export JAVA_APP_DIR=/deployments
+# Set -Xmx based on container constraints
+export JAVA_MAX_MEM_RATIO=40
+# Start the jar in JAVA_APP_DIR with the given arguments
+./run-java.sh --user maxmorlock --password secret
+```
+
+### Options
+
+This script can also be used to calculate reasonable, best-practice options for starting Java apps in general. For example, when running Maven in a container it makes sense to respect  container Memory constraints.
+
+The subcommand `options` can be used to print options to standard output so that is can be easily used to feed it to another, Java based application.
+
+When no extra arguments are given, all defaults will be used, which can be influenced with the environment variables described above.
+
+You can select specific sets of options by providing additional arguments:
+
+* `--debug` : Java debug options if `JAVA_DEBUG` is set
+* `--memory` : Memory settings based on the environment variables given
+* `--proxy` : Evaluate proxy environments variables
+* `--cpu` : Tuning when the number of cores is limited
+* `--gc` : GC tuning parameters
+* `--jit` : JIT options
+* `--diagnostics` : Print diagnostics options when `JAVA_DIAGNOSTICS` is set
+* `--java-default` : Same as `--memory --jit --diagnostic --cpu --gc`
+
+Example:
+
+```
+# Call Maven with the proper memory settings when running in an container
+export MAVEN_OPTS="$(run-java.sh options --memory)"
+mvn clean install
+```
 
 
 ### Versions:
 
 * Base-Image: **JBoss with OpenJDK undefined**
 * Java: **OpenJDK 7 1.7.0** (Java Development Kit (JDK))
-* Agent-Bond: **1.1.1** (Jolokia 1.3.7, jmx_exporter 0.1.0)
+* Agent-Bond: **1.2.0** (Jolokia 1.5.0, jmx_exporter 0.2.0)
