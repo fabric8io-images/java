@@ -1,6 +1,7 @@
 ## Fabric8 Java Base Image OpenJDK 8 (JDK)
 
 > ** This image is deprecated and not maintained anymore. Please select one of the other flavors (alpine, centos).**
+
 -----
 
 
