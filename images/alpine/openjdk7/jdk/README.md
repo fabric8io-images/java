@@ -1,5 +1,7 @@
 ## Fabric8 Java Base Image OpenJDK 7 (JDK)
 
+
+
 This image is based on Alpine and provides OpenJDK 7 (JDK)
 
 It includes:
@@ -22,8 +24,8 @@ For example, the following snippet can be added to a script starting up your Jav
 
 The following versions and defaults are used:
 
-* [Jolokia](http://www.jolokia.org) : version **1.5.0** and port **8778**
-* [jmx_exporter](https://github.com/prometheus/jmx_exporter): version **0.2.0** and port **9779**
+* [Jolokia](http://www.jolokia.org) : version **1.6.0** and port **8778**
+* [jmx_exporter](https://github.com/prometheus/jmx_exporter): version **0.3.1** and port **9779**
 
 You can influence the behaviour of `agent-bond-opts` by setting various environment variables:
 
@@ -177,6 +179,6 @@ mvn clean install
 
 ### Versions:
 
-* Base-Image: **Alpine 3.7**
+* Base-Image: **Alpine 3.8**
 * Java: **OpenJDK 7 1.7.0** (Java Development Kit (JDK))
-* Agent-Bond: **1.2.0** (Jolokia 1.5.0, jmx_exporter 0.2.0)
+* Agent-Bond: **1.2.0** (Jolokia 1.6.0, jmx_exporter 0.3.1)

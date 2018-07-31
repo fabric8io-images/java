@@ -1,9 +1,9 @@
+{{ var major = fp.config.version.major; }}
 # /dev/urandom is used as random source, which is prefectly safe
 # according to http://www.2uo.de/myths-about-urandom/
 RUN yum install -y \
-       java-{{= fp.config.version.version }}-openjdk {{? fp.param.type === "jdk" }} \
-       java-{{= fp.config.version.version }}-openjdk-devel \
+       java-{{= fp.config.version.version }}-openjdk-{{= fp.config.base.javaPackage[major]}} \ {{? fp.param.type === "jdk" }}
+       java-{{= fp.config.version.version }}-openjdk-devel-{{= fp.config.base.javaPackage[major]}} \ {{?}}
     && echo "securerandom.source=file:/dev/urandom" >> /usr/lib/jvm/java/jre/lib/security/java.security
 
-{{?}}
 ENV JAVA_HOME /etc/alternatives/jre

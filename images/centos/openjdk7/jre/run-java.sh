@@ -7,7 +7,7 @@
 #    # Execute a Java app:
 #    ./run-java.sh <args given to Java code>
 #
-#    # Get options which can be used for invoking Java apps like Maven or Tomcate
+#    # Get options which can be used for invoking Java apps like Maven or Tomcat
 #    ./run-java.sh options [....]
 #
 #
@@ -253,9 +253,9 @@ debug_options() {
 # multi line arrangements
 format_classpath() {
   local cp_file="$1"
-  local app_jar="$2"
+  local app_jar="${2:-}"
 
-  local wc_out=$(wc -l $1 2>&1)
+  local wc_out="$(wc -l $1 2>&1)"
   if [ $? -ne 0 ]; then
     echo "Cannot read lines in ${cp_file}: $wc_out"
     exit 1
@@ -462,7 +462,7 @@ proxy_options() {
 
   local noProxy="${no_proxy:-${NO_PROXY:-}}"
   if [ -n "$noProxy" ] ; then
-    ret="$ret -Dhttp.nonProxyHosts=\"$(echo $noProxy | sed -e 's/,[[:space:]]*/|/g')\""
+    ret="$ret -Dhttp.nonProxyHosts=\"$(echo "|$noProxy" | sed -e 's/,[[:space:]]*/|/g' | sed -e 's/|\./|\*\./g' | cut -c 2-)\""
   fi
   echo "$ret"
 }
@@ -500,7 +500,7 @@ classpath() {
     fi
     if [ -f "${JAVA_LIB_DIR}/classpath" ]; then
       # Classpath is pre-created and stored in a 'run-classpath' file
-      cp_path="${cp_path}:$(format_classpath ${JAVA_LIB_DIR}/classpath ${JAVA_APP_JAR})"
+      cp_path="${cp_path}:$(format_classpath ${JAVA_LIB_DIR}/classpath ${JAVA_APP_JAR:-})"
     else
       # No order implied
       cp_path="${cp_path}:${JAVA_APP_DIR}/*"
