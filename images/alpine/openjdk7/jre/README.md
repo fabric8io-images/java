@@ -1,5 +1,7 @@
 ## Fabric8 Java Base Image OpenJDK 7 (JRE)
 
+
+
 This image is based on Alpine and provides OpenJDK 7 (JRE)
 
 It includes:

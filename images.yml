@@ -31,6 +31,7 @@ config:
         7: 1.7.0.181-2.6.14.8.el7_5
         8: 1.8.0.181-3.b13.el7_5
     jboss:
+      deprecated: true
       from: "jboss/base-jdk"
       user: "jboss"
       # Use the major version

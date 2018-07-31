@@ -1,5 +1,10 @@
 ## Fabric8 Java Base Image {{= fp.config.version.description }} ({{= fp.param.type.toUpperCase() }})
 
+{{? fp.config.base.deprecated }}> ** This image is deprecated and not maintained anymore. Please select one of the other flavors (alpine, centos).**
+
+-----
+{{?}}
+
 This image is based on {{= fp.config.base.description }} and provides {{= fp.config.version.description }} ({{= fp.param.type.toUpperCase() }})
 
 It includes:

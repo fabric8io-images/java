@@ -1,5 +1,9 @@
 ## Fabric8 Java Base Image OpenJDK 7 (JDK)
 
+> ** This image is deprecated and not maintained anymore. Please select one of the other flavors (alpine, centos).**
+-----
+
+
 This image is based on JBoss with OpenJDK and provides OpenJDK 7 (JDK)
 
 It includes:
