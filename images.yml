@@ -22,7 +22,7 @@ config:
       description: "Alpine"
       javaPackage:
         7: 7.181.2.6.14-r0
-        8: 8.171.11-r0
+        8: 8.181.13-r0
     centos:
       from: "centos:7.5.1804"
       createUser: true
