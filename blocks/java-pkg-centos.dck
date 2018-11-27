@@ -4,6 +4,7 @@
 RUN yum install -y \
        java-{{= fp.config.version.version }}-openjdk-{{= fp.config.base.javaPackage[major]}} \ {{? fp.param.type === "jdk" }}
        java-{{= fp.config.version.version }}-openjdk-devel-{{= fp.config.base.javaPackage[major]}} \ {{?}}
-    && echo "securerandom.source=file:/dev/urandom" >> /usr/lib/jvm/{{? fp.param.type === "jdk" }}java/{{?}}jre/lib/security/java.security
+    && echo "securerandom.source=file:/dev/urandom" >> /usr/lib/jvm/{{? fp.param.type === "jdk" }}java/{{?}}jre/lib/security/java.security \
+    && yum clean all
 
 ENV JAVA_HOME /etc/alternatives/jre
