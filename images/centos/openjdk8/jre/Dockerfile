@@ -13,7 +13,8 @@ ENV JAVA_APP_DIR=/deployments \
 # according to http://www.2uo.de/myths-about-urandom/
 RUN yum install -y \
        java-1.8.0-openjdk-1.8.0.181-3.b13.el7_5 \ 
-    && echo "securerandom.source=file:/dev/urandom" >> /usr/lib/jvm/jre/lib/security/java.security
+    && echo "securerandom.source=file:/dev/urandom" >> /usr/lib/jvm/jre/lib/security/java.security \
+    && yum clean all
 
 ENV JAVA_HOME /etc/alternatives/jre
 
