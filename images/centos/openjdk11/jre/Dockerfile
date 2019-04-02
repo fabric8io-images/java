@@ -13,7 +13,7 @@ ENV JAVA_APP_DIR=/deployments \
 # according to http://www.2uo.de/myths-about-urandom/
 RUN yum install -y \
        java-11-openjdk-11.0.2.7-0.el7_6 \
-    && echo "securerandom.source=file:/dev/urandom" >> /usr/lib/jvm/java/lib/security/java.security \
+    && echo "securerandom.source=file:/dev/urandom" >> /usr/lib/jvm/jre/lib/security/java.security \
     && yum clean all
 
 ENV JAVA_HOME /etc/alternatives/jre
