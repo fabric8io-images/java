@@ -22,7 +22,8 @@ The Java base images come in different flavors:
 * Based on [CentOS 7](https://www.centos.org/) or
   [Alpine Linux](https://www.alpinelinux.org/) (experimental)
 * [OpenJDK 7](http://openjdk.java.net/projects/jdk7/) or
-  [OpenJDK 8](http://openjdk.java.net/projects/jdk8/)
+  [OpenJDK 8](http://openjdk.java.net/projects/jdk8/) or
+  [OpenJDK 11](http://openjdk.java.net/projects/jdk/11/)
 * As JDK (Java Developer Toolkit) or as JRE (Java Runtime Environment)
 
 All images add the following features:
