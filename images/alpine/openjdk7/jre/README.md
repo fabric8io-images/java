@@ -179,6 +179,6 @@ mvn clean install
 
 ### Versions:
 
-* Base-Image: **Alpine 3.8**
+* Base-Image: **Alpine 3.9**
 * Java: **OpenJDK 7 1.7.0** (Java Runtime Environment (JRE))
 * Agent-Bond: **1.2.0** (Jolokia 1.6.0, jmx_exporter 0.3.1)
