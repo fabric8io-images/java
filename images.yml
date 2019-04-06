@@ -31,7 +31,7 @@ config:
       description: "CentOS"
       javaPackage:
         7: 1.7.0.201-2.6.16.1.el7_6
-        8: 1.8.0.191.b12-1.el7_6
+        8: 1.8.0.201.b09-2.el7_6
     jboss:
       deprecated: true
       from: "jboss/base-jdk"
