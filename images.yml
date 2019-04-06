@@ -5,7 +5,7 @@ fish-pepper:
     - version
     - type
   name: "fabric8/java"
-  build: "1.5.4"
+  build: "1.5.5"
 
 # Used for escaping in 'agent-bond-opts' where the same delimiters are used
 abSepOpen: "{{"
@@ -17,12 +17,12 @@ config:
       agent: "agent-bond"
       baseDir: "/deployments"
     alpine:
-      from: "alpine:3.8"
-      version: "3.8"
+      from: "alpine:3.9"
+      version: "3.9"
       description: "Alpine"
       javaPackage:
-        7: 7.181.2.6.14-r0
-        8: 8.191.12-r0
+        7: 7.201.2.6.16-r0
+        8: 8.201.08-r1
     centos:
       from: "centos:7.6.1810"
       createUser: true
