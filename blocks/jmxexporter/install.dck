@@ -1,0 +1,20 @@
+{{
+  var destPath = fp.blockOpts.dest || "/opt/prometheus/prometheus-options";
+  var globalVersions = fp.version || {};
+  var jmxExporterVersion =  fp.blockOpts.version || globalVersions.jmxexporter;
+  var jmxExporterArtifact = fp.blockOpts.jmxExporterArtifact || "jmx_prometheus_javaagent";
+  var mavenRepo = fp.blockOpts.mavenRepo || "http://central.maven.org/maven2";
+  var userGroupMode = fp.blockOpts.userGroupMode;
+}}# Prometheus JMX exporter agent
+RUN mkdir -p /opt/prometheus/etc \
+ && curl {{= mavenRepo }}/io/prometheus/jmx/{{= jmxExporterArtifact}}/{{= jmxExporterVersion }}/{{= jmxExporterArtifact}}-{{= jmxExporterVersion }}.jar \
+          -o /opt/prometheus/jmx_prometheus_javaagent.jar
+ADD prometheus-opts {{= destPath }}
+ADD prometheus-config.yml /opt/prometheus/prometheus-config.yml
+RUN chmod 444 /opt/prometheus/jmx_prometheus_javaagent.jar \
+ && chmod 444 /opt/prometheus/prometheus-config.yml \
+ && chmod 755 {{= destPath }} \
+ && chmod 775 /opt/prometheus/etc \
+ && chgrp root /opt/prometheus/etc
+
+EXPOSE 9779
