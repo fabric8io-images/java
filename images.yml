@@ -32,6 +32,7 @@ config:
       javaPackage:
         7: 1.7.0.201-2.6.16.1.el7_6
         8: 1.8.0.201.b09-2.el7_6
+        11: 11.0.2.7-0.el7_6
     jboss:
       deprecated: true
       from: "jboss/base-jdk"
@@ -48,12 +49,22 @@ config:
       version: "1.8.0"
       description: "OpenJDK 8"
       major: 8
+    openjdk11:
+      version: "11.0.2"
+      description: "OpenJDK 11"
+      major: 11
+      fish-pepper:
+        # Ignore for for Alpine and JBoss as there are no Java 11 packages
+        ignore-for:
+           - [ "alpine" ]
+           - [ "jboss" ]
+
   type:
     jre:
       description: "Java Runtime Environment (JRE)"
       # Ignore JREs for JBoss image since there are no JRE variants for them available
       fish-pepper:
         ignore-for:
-           - [ "jboss", "*" ]
+           - [ "jboss" ]
     jdk:
       description: "Java Development Kit (JDK)"
