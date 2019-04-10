@@ -53,12 +53,18 @@ config:
       version: "11.0.2"
       description: "OpenJDK 11"
       major: 11
+      fish-pepper:
+        # Ignore for for Alpine and JBoss as there are no Java 11 packages
+        ignore-for:
+           - [ "alpine" ]
+           - [ "jboss" ]
+
   type:
     jre:
       description: "Java Runtime Environment (JRE)"
       # Ignore JREs for JBoss image since there are no JRE variants for them available
       fish-pepper:
         ignore-for:
-           - [ "jboss", "*" ]
+           - [ "jboss" ]
     jdk:
       description: "Java Development Kit (JDK)"
