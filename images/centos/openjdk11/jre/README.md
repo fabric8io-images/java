@@ -1,33 +1,12 @@
 ## Fabric8 Java Base Image OpenJDK 11 (JRE)
 
-
-
 This image is based on CentOS and provides OpenJDK 11 (JRE)
 
 It includes:
 
-
-
 * A startup script [`/deployments/run-java.sh`](#startup-script-run-javash) for starting up Java applications.
-
-### Agent Bond
-
-In order to enable Jolokia for your application you should use this image as a base image (via `FROM`) and use the output of `agent-bond-opts` in your startup scripts to include it in for the Java startup options.
-
-For example, the following snippet can be added to a script starting up your Java application
-
-    # ...
-    export JAVA_OPTIONS="$JAVA_OPTIONS $(agent-bond-opts)"
-    # .... use JAVA_OPTIONS when starting your app, e.g. as Tomcat does
-
-The following versions and defaults are used:
-
-* [Jolokia](http://www.jolokia.org) : version **1.6.2** and port **8778**
-* [jmx_exporter](https://github.com/prometheus/jmx_exporter): version **0.3.1** and port **9779**
-
-You can influence the behaviour of `agent-bond-opts` by setting various environment variables:
-
-undefined
+* [Jolokia](http://www.jolokia.org) agent installed in `/opt/jolokia`
+* Prometheus [jmx_exporter](https://github.com/prometheus/jmx_exporter) agent installed in `/opt/jmx_exporter`.
 
 ### Startup Script run-java.sh
 
@@ -138,7 +117,55 @@ mvn clean install
 ```
 
 
+### Monitoring Agents
+
+In order to enable Jolokia and Prometheus exporter for your application you should use this image as a base image (via `FROM`) and use the output of `jolokia-opts` and `prometheus-opts` in your startup scripts to include it in for the Java startup options. You can also just use the provided startup script `/opt/run-java.sh` which does this automatically.
+
+For example, the following snippet can be added to a script starting up your Java application
+
+    # ...
+    export JAVA_OPTIONS="$JAVA_OPTIONS $(/opt/jolokia/jolokia-opts) $(/opt/prometheus/prometheus-opts)"
+    # .... use JAVA_OPTIONS when starting your app, e.g. as Tomcat does
+
+The following versions and defaults are used:
+
+* [Jolokia](http://www.jolokia.org) : version **1.6.2** and port **8778**
+* [jmx_exporter](https://github.com/prometheus/jmx_exporter): version **0.3.1** and port **9779**
+
+You can influence the behaviour of these config scripts by setting various environment variables.
+
+#### Jolokia Configuration
+
+* **AB_JOLOKIA_OFF** : If set disables activation of Jolokia (i.e. echos an empty value). By default, Jolokia is enabled.
+* **AB_JOLOKIA_CONFIG** : If set uses this file (including path) as Jolokia JVM agent properties (as described
+  in Jolokia's [reference manual](http://www.jolokia.org/reference/html/agents.html#agents-jvm)). If not set,
+  the `/opt/jolokia/etc/jolokia.properties` will be created using the settings as defined in this document, otherwise
+  the reset of the settings in this document are ignored.
+* **AB_JOLOKIA_HOST** : Host address to bind to (Default: `0.0.0.0`)
+* **AB_JOLOKIA_PORT** : Port to use (Default: `8778`)
+* **AB_JOLOKIA_USER** : User for basic authentication. Defaults to 'jolokia'
+* **AB_JOLOKIA_PASSWORD** : Password for basic authentication. By default authentication is switched off.
+* **AB_JOLOKIA_PASSWORD_RANDOM** : Should a random AB_JOLOKIA_PASSWORD be generated? Generated value will be written to `/opt/jolokia/etc/jolokia.pw`
+* **AB_JOLOKIA_HTTPS** : Switch on secure communication with https. By default self signed server certificates are generated
+  if no `serverCert` configuration is given in `AB_JOLOKIA_OPTS`
+* **AB_JOLOKIA_ID** : Agent ID to use (`$HOSTNAME` by default, which is the container id)
+* **AB_JOLOKIA_DISCOVERY_ENABLED** : Enable Jolokia discovery.  Defaults to false.
+* **AB_JOLOKIA_OPTS**  : Additional options to be appended to the agent configuration. They should be given in the format
+  "key=value,key=value,..."
+
+Some options for integration in various environments:
+
+* **AB_JOLOKIA_AUTH_OPENSHIFT** : Switch on client authentication for OpenShift TSL communication. The value of this
+  parameter can be a relative distinguished name which must be contained in a presented client certificate. Enabling this
+  parameter will automatically switch Jolokia into https communication mode. The default CA cert is set to
+  `/var/run/secrets/kubernetes.io/serviceaccount/ca.crt`
+
+
+undefined
+
 ### Versions:
 
 * Base-Image: **CentOS 7**
 * Java: **OpenJDK 11 11** (Java Runtime Environment (JRE))
+* Jolokia: **1.6.2**
+* jmx_exporter: **undefined**

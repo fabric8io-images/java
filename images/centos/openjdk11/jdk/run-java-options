@@ -1,0 +1,4 @@
+#!/bin/bash
+# Delegate to the individual agent options scripts which will
+# examine the environment for features to be enabled
+echo "$(/opt/jolokia/jolokia-opts) $(/opt/prometheus/prometheus-opts)"

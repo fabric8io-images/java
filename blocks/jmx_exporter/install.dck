@@ -1,7 +1,7 @@
 {{
-  var destPath = fp.blockOpts.dest || "/opt/prometheus/prometheus-options";
+  var destPath = fp.blockOpts.dest || "/opt/prometheus/prometheus-opts";
   var globalVersions = fp.version || {};
-  var jmxExporterVersion =  fp.blockOpts.version || globalVersions.jmxexporter;
+  var jmxExporterVersion =  fp.blockOpts.version || globalVersions.jmx_exporter;
   var jmxExporterArtifact = fp.blockOpts.jmxExporterArtifact || "jmx_prometheus_javaagent";
   var mavenRepo = fp.blockOpts.mavenRepo || "http://central.maven.org/maven2";
   var userGroupMode = fp.blockOpts.userGroupMode;

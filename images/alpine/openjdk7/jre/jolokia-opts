@@ -1,5 +1,16 @@
 #!/bin/sh
 
+
+# Exit if switched off
+if [ -n "${AB_JOLOKIA_OFF:-}" ] && [ "${AB_JOLOKIA_OFF}" != "false" ]; then
+  exit 0
+fi
+
+# Global switch, turning of all agents
+if [ -n "${AB_OFF:-}" ] && [ "${AB_OFF}" != "false" ]; then
+  exit 0
+fi
+
 # Check whether a given config is contained in AB_JOLOKIA_OPTS
 is_in_jolokia_opts() {
   local prop=$1
@@ -85,10 +96,8 @@ EOF
 
 }
 
-if [ -z "${AB_JOLOKIA_OFF:-}" ]; then
-  if [ -z "${AB_JOLOKIA_CONFIG:-}" ]; then
-    AB_JOLOKIA_CONFIG="/opt/jolokia/etc/jolokia.properties"
-    write_jolokia_properties "$AB_JOLOKIA_CONFIG"
-  fi
-  echo "-javaagent:/opt/jolokia/jolokia.jar=config=${AB_JOLOKIA_CONFIG}"
+if [ -z "${AB_JOLOKIA_CONFIG:-}" ]; then
+  AB_JOLOKIA_CONFIG="/opt/jolokia/etc/jolokia.properties"
+  write_jolokia_properties "$AB_JOLOKIA_CONFIG"
 fi
+echo "-javaagent:/opt/jolokia/jolokia.jar=config=${AB_JOLOKIA_CONFIG}"

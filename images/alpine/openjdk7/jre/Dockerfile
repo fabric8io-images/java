@@ -49,6 +49,7 @@ EXPOSE 8778
 COPY run-java.sh /deployments/
 RUN chmod 755 /deployments/run-java.sh
 
+COPY run-java-options /opt
 
 
 

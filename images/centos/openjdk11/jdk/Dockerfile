@@ -14,7 +14,7 @@ ENV JAVA_APP_DIR=/deployments \
 RUN yum install -y \
        java-11-openjdk-11.0.5.10-0.el7_7 \ 
        java-11-openjdk-devel-11.0.5.10-0.el7_7 \ 
-       && echo "securerandom.source=file:/dev/urandom" >> /usr/lib/jvm/java/jre/lib/security/java.security \
+       && echo "securerandom.source=file:/dev/urandom" >> /usr/lib/jvm/jre/lib/security/java.security \
        && yum clean all
 
 ENV JAVA_HOME /etc/alternatives/jre
@@ -51,12 +51,14 @@ EXPOSE 8778
 COPY run-java.sh /deployments/
 RUN chmod 755 /deployments/run-java.sh
 
+COPY run-java-options /opt
 
 
 # Run under user "jboss" and prepare for be running
 # under OpenShift, too
 RUN groupadd -r jboss -g 1000 \
   && useradd -u 1000 -r -g jboss -m -d /opt/jboss -s /sbin/nologin jboss \
+  && chmod 755 /opt/run-java-options \
   && chmod 755 /opt/jboss \
   && chown -R jboss /deployments \
   && usermod -g root -G `id -g jboss` jboss \
