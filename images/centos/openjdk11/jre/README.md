@@ -180,5 +180,5 @@ mvn clean install
 ### Versions:
 
 * Base-Image: **CentOS 7**
-* Java: **OpenJDK 11 11.0.2** (Java Runtime Environment (JRE))
+* Java: **OpenJDK 11 11** (Java Runtime Environment (JRE))
 * Agent-Bond: **1.2.0** (Jolokia 1.6.0, jmx_exporter 0.3.1)
