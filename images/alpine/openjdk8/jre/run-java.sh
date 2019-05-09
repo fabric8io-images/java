@@ -86,9 +86,10 @@ auto_detect_jar_file() {
   local old_dir="$(pwd)"
   cd ${dir}
   if [ $? = 0 ]; then
-    local nr_jars="$(ls 2>/dev/null | grep -e '.*\.jar$' | grep -v '^original-' | wc -l | awk '{print $1}')"
+    # NB: Find both (single) JAR *or* WAR <https://github.com/fabric8io-images/run-java-sh/issues/79>
+    local nr_jars="$(ls 2>/dev/null | grep -e '.*\.jar$' -e '.*\.war$' | grep -v '^original-' | wc -l | awk '{print $1}')"
     if [ "${nr_jars}" = 1 ]; then
-      ls *.jar | grep -v '^original-'
+      ls 2>/dev/null | grep -e '.*\.jar$' -e '.*\.war$' | grep -v '^original-'
       exit 0
     fi
     cd "${old_dir}"
@@ -369,7 +370,11 @@ jit_options() {
 # Switch on diagnostics except when switched off
 diagnostics_options() {
   if [ -n "${JAVA_DIAGNOSTICS:-}" ]; then
-    echo "-XX:NativeMemoryTracking=summary -XX:+PrintGC -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+UnlockDiagnosticVMOptions"
+    if [ "${JAVA_MAJOR_VERSION:-0}" -ge "11" ]; then
+      echo "-XX:NativeMemoryTracking=summary -Xlog:gc*:stdout:time -XX:+UnlockDiagnosticVMOptions"
+    else
+      echo "-XX:NativeMemoryTracking=summary -XX:+PrintGC -XX:+PrintGCDateStamps -XX:+PrintGCTimeStamps -XX:+UnlockDiagnosticVMOptions"
+    fi
   fi
 }
 
@@ -478,7 +483,7 @@ proxy_options() {
 
   local noProxy="${no_proxy:-${NO_PROXY:-}}"
   if [ -n "$noProxy" ] ; then
-    ret="$ret -Dhttp.nonProxyHosts=\"$(echo "|$noProxy" | sed -e 's/,[[:space:]]*/|/g' | sed -e 's/|\./|\*\./g' | cut -c 2-)\""
+    ret="$ret -Dhttp.nonProxyHosts=$(echo "|$noProxy" | sed -e 's/,[[:space:]]*/|/g' | sed -e 's/[[:space:]]//g' | sed -e 's/|\./|\*\./g' | cut -c 2-)"
   fi
   echo "$ret"
 }
