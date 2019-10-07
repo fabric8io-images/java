@@ -55,7 +55,7 @@ config:
       description: "OpenJDK 11"
       major: 11
       fish-pepper:
-        # Ignore for for Alpine and JBoss as there are no Java 11 packages
+        # Ignore for JBoss as there are no Java 11 packages
         ignore-for:
            - [ "jboss" ]
 
