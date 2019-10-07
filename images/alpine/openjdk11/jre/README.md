@@ -1,8 +1,8 @@
-## Fabric8 Java Base Image OpenJDK 8 (JDK)
+## Fabric8 Java Base Image OpenJDK 11 (JRE)
 
 
 
-This image is based on Alpine and provides OpenJDK 8 (JDK)
+This image is based on Alpine and provides OpenJDK 11 (JRE)
 
 It includes:
 
@@ -180,5 +180,5 @@ mvn clean install
 ### Versions:
 
 * Base-Image: **Alpine 3.10**
-* Java: **OpenJDK 8 1.8.0** (Java Development Kit (JDK))
+* Java: **OpenJDK 11 11** (Java Runtime Environment (JRE))
 * Agent-Bond: **1.2.0** (Jolokia 1.6.2, jmx_exporter 0.3.1)

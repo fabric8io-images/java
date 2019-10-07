@@ -3,7 +3,7 @@
 # Versions of support libs
 version:
   agentBond: "1.2.0"
-  jolokia: "1.6.1"
+  jolokia: "1.6.2"
   jmxExporter: "0.3.1"
 
 # Who to blame
