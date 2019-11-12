@@ -3,6 +3,6 @@
 # according to http://www.2uo.de/myths-about-urandom/
 RUN apk add --update \
     curl \
-    {{= fp.param.type == 'jre' ? 'openjdk' + major + '-jre-base' : 'openjdk' + major }}={{= fp.config.base.javaPackage[major]}} \
+    {{= fp.param.type == 'jre' ? 'openjdk' + major + '-jre' : 'openjdk' + major }}={{= fp.config.base.javaPackage[major]}} \
  && rm /var/cache/apk/* \
  && echo "securerandom.source=file:/dev/urandom" >> /usr/lib/jvm/default-jvm/jre/lib/security/java.security
