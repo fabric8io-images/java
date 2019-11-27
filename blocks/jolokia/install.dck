@@ -1,0 +1,19 @@
+{{
+  var destPath = fp.blockOpts.dest || "/opt/jolokia/jolokia-options";
+  var globalVersions = fp.version || {};
+  var jolokiaVersion =  fp.blockOpts.version || globalVersions.jolokia || "1.5.0";
+  var jolokiaArtifact = jolokiaVersion.match(/^2.*$/) ? "jolokia-agent-jvm" : "jolokia-jvm";
+  var mavenRepo = fp.blockOpts.mavenRepo || "http://central.maven.org/maven2";
+  var userGroupMode = fp.blockOpts.userGroupMode;
+}}# Jolokia agent
+RUN mkdir -p /opt/jolokia/etc \
+ && curl {{= mavenRepo }}/org/jolokia/{{= jolokiaArtifact }}/{{= jolokiaVersion }}/{{= jolokiaArtifact }}-{{= jolokiaVersion }}-agent.jar \
+         -o /opt/jolokia/jolokia.jar
+ADD jolokia-opts {{= destPath }}
+RUN chmod 444 /opt/jolokia/jolokia.jar \
+ && chmod 755 {{= destPath}} \{{? userGroupMode }}
+ && chmod 775 /opt/jolokia/etc \
+ && chgrp {{= userGroupMode }} /opt/jolokia/etc{{??}}
+ && chmod 755 /opt/jolokia/etc{{?}}
+
+EXPOSE 8778

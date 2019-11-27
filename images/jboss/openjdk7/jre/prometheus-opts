@@ -1,0 +1,23 @@
+#!/bin/sh
+# Scripted for getting Prometheus options
+# meant to be evaluated (not to be sourced)
+
+# Exit if switched off
+if [ -n "${AB_PROMETHEUS_OFF:-}" ] && [ "${AB_PROMETHEUS_OFF}" != "false" ]; then
+  exit 0
+fi
+
+# Global switch, turning of all agents
+if [ -n "${AB_OFF:-}" ] && [ "${AB_OFF}" != "false" ]; then
+  exit 0
+fi
+
+port=${AB_PROMETHEUS_PORT:-9779}
+config=${AB_PROMETHEUS_CONFIG:-/opt/prometheus/prometheus-config.yml}
+if [ -n "${AB_PROMETHEUS_HOST:-}" ]; then
+  hostPort="${AB_PROMETHEUS_HOST}:$port"
+else
+  hostPort="$port"
+fi
+
+echo "-javaagent:/opt/prometheus/jmx_prometheus_javaagent.jar=${hostPort}:$config"
