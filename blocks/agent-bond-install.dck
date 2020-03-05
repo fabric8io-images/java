@@ -1,0 +1,12 @@
+{{
+  var destPath = fp.blockOpts.dest || "/bin/agent-bond-options";
+  var agentBondVersion = fp.version.agentBond || fp.blockOpts.version || "1.2.0";
+}}# Agent bond including Jolokia and jmx_exporter
+ADD agent-bond-opts {{= destPath }}
+RUN mkdir -p /opt/agent-bond \
+ && curl https://repo.maven.apache.org/maven2/io/fabric8/agent-bond-agent/{{= agentBondVersion }}/agent-bond-agent-{{= agentBondVersion }}.jar \
+          -o /opt/agent-bond/agent-bond.jar \
+ && chmod 444 /opt/agent-bond/agent-bond.jar \
+ && chmod 755 {{= destPath}}
+ADD jmx_exporter_config.yml /opt/agent-bond/
+EXPOSE 8778 9779

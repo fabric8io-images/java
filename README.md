@@ -20,7 +20,7 @@ fish-pepper
 The Java base images come in different flavors:
 
 * Based on [CentOS 7](https://www.centos.org/) or
-  [Alpine Linux](https://www.alpinelinux.org/) (experimental)
+  [Alpine Linux](https://www.alpinelinux.org/) (experimental) or [Red Hat Universal Base Image](https://developers.redhat.com/products/rhel/ubi/)
 * [OpenJDK 7](http://openjdk.java.net/projects/jdk7/) or
   [OpenJDK 8](http://openjdk.java.net/projects/jdk8/) or
   [OpenJDK 11](http://openjdk.java.net/projects/jdk/11/)

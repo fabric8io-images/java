@@ -34,6 +34,16 @@ config:
         7: 1.7.0.231-2.6.19.2.el7_7
         8: 1.8.0.232.b09-0.el7_7
         11: 11.0.5.10-0.el7_7
+    ubi:
+      from: "registry.access.redhat.com/ubi8/ubi-minimal:8.1-398"
+      createUser: false
+      createUBIUser: true
+      ubiUser: 1001 
+      version: "8.1"
+      description: "UBI"
+      javaPackage:
+        8: 1.8.0.242.b08-0.el8_1
+        11: 11.0.6.10-0.el8_1
     jboss:
       deprecated: true
       from: "jboss/base-jdk"
@@ -46,6 +56,10 @@ config:
       version: "1.7.0"
       description: "OpenJDK 7"
       major: 7
+      fish-pepper:
+        # Ignore for UBI as there are no Java 7 packages
+        ignore-for:
+           - [ "ubi" ]
     openjdk8:
       version: "1.8.0"
       description: "OpenJDK 8"
@@ -62,9 +76,10 @@ config:
   type:
     jre:
       description: "Java Runtime Environment (JRE)"
-      # Ignore JREs for JBoss image since there are no JRE variants for them available
+      # Ignore JREs for JBoss and UBI images since there are no JRE variants for them available
       fish-pepper:
         ignore-for:
            - [ "jboss" ]
+           - [ "ubi" ]
     jdk:
       description: "Java Development Kit (JDK)"
