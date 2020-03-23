@@ -33,7 +33,7 @@ config:
       javaPackage:
         7: 1.7.0.231-2.6.19.2.el7_7
         8: 1.8.0.242.b08-0.el7_7
-        11: 11.0.5.10-0.el7_7
+        11: 11.0.6.10-1.el7_7
     jboss:
       deprecated: true
       from: "jboss/base-jdk"
