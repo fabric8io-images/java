@@ -1,0 +1,9 @@
+{{ var major = fp.config.version.major; }}
+# /dev/urandom is used as random source, which is prefectly safe
+# according to http://www.2uo.de/myths-about-urandom/
+RUN microdnf install java-{{= fp.config.version.version }}-openjdk-headless-{{= fp.config.base.javaPackage[major]}} \
+      openssl curl ca-certificates \
+    && echo "securerandom.source=file:/dev/urandom" >> /usr/lib/jvm/jre/lib/security/java.security \
+    && microdnf clean all
+
+ENV JAVA_HOME /etc/alternatives/jre

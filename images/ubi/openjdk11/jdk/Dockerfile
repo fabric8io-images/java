@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM registry.access.redhat.com/ubi8/ubi-minimal:8.1-398
 
 USER root
 
@@ -9,13 +9,14 @@ ENV JAVA_APP_DIR=/deployments \
     JAVA_MAJOR_VERSION=11
 
 
-# /dev/urandom is used as random source, which is perfectly safe
+# /dev/urandom is used as random source, which is prefectly safe
 # according to http://www.2uo.de/myths-about-urandom/
-RUN apk add --update \
-    curl \
-    openjdk11=11.0.4_p4-r1 \
- && rm /var/cache/apk/* \
- && echo "securerandom.source=file:/dev/urandom" >> /usr/lib/jvm/default-jvm/jre/lib/security/java.security
+RUN microdnf install java-11-openjdk-headless-11.0.6.10-0.el8_1 \
+      openssl curl ca-certificates \
+    && echo "securerandom.source=file:/dev/urandom" >> /usr/lib/jvm/jre/lib/security/java.security \
+    && microdnf clean all
+
+ENV JAVA_HOME /etc/alternatives/jre
 
 # Agent bond including Jolokia and jmx_exporter
 ADD agent-bond-opts /opt/run-java-options
@@ -33,5 +34,17 @@ RUN chmod 755 /deployments/run-java.sh
 
 
 
+
+# Run under user "1001" and prepare for be running
+# under OpenShift, too
+RUN chown 1001 /deployments \
+    && chmod "g+rwX" /deployments \
+    && chown 1001:root /deployments \
+    && chmod g+rw /etc/passwd \
+    && mkdir -p /deployments/data \
+    && chown 1001 /deployments/run-java.sh
+
+# Gives uid
+USER 1001
 
 CMD [ "/deployments/run-java.sh" ]
