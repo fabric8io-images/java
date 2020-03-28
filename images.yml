@@ -5,7 +5,7 @@ fish-pepper:
     - version
     - type
   name: "fabric8/java"
-  build: "1.6.4"
+  build: "1.7.0"
 
 # Used for escaping in 'agent-bond-opts' where the same delimiters are used
 abSepOpen: "{{"
@@ -38,7 +38,7 @@ config:
       from: "registry.access.redhat.com/ubi8/ubi-minimal:8.1-398"
       createUser: false
       createUBIUser: true
-      ubiUser: 1001 
+      ubiUser: 1001
       version: "8.1"
       description: "UBI"
       javaPackage:
