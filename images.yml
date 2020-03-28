@@ -31,9 +31,9 @@ config:
       version: "7"
       description: "CentOS"
       javaPackage:
-        7: 1.7.0.231-2.6.19.2.el7_7
-        8: 1.8.0.232.b09-0.el7_7
-        11: 11.0.5.10-0.el7_7
+        7: 1.7.0.251-2.6.21.0.el7_7
+        8: 1.8.0.242.b08-0.el7_7
+        11: 11.0.6.10-1.el7_7
     ubi:
       from: "registry.access.redhat.com/ubi8/ubi-minimal:8.1-398"
       createUser: false

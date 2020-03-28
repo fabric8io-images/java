@@ -12,8 +12,8 @@ ENV JAVA_APP_DIR=/deployments \
 # /dev/urandom is used as random source, which is prefectly safe
 # according to http://www.2uo.de/myths-about-urandom/
 RUN yum install -y \
-       java-11-openjdk-11.0.5.10-0.el7_7 \ 
-       java-11-openjdk-devel-11.0.5.10-0.el7_7 \ 
+       java-11-openjdk-11.0.6.10-1.el7_7 \ 
+       java-11-openjdk-devel-11.0.6.10-1.el7_7 \ 
     && echo "securerandom.source=file:/dev/urandom" >> /usr/lib/jvm/jre/lib/security/java.security \
     && yum clean all
 
