@@ -9,7 +9,8 @@ ENV JAVA_APP_DIR={{= fp.config.base.baseDir }} \
     JAVA_MAJOR_VERSION={{= fp.config.version.major }}
 
 {{= fp.block("java-pkg-" + fp.param.base) || ''}}
-{{= fp.block(fp.config.base.agent, "install", { dest: "/opt/run-java-options" }) }}
+{{= fp.block(fp.config.base.agent + "-install", { dest: "/opt/run-java-options" }) }}
+
 {{= fp.block("run-java-sh","copy",{dest: fp.config.base.baseDir}) }}
 
 {{? fp.config.base.user }}
@@ -25,5 +26,17 @@ RUN {{? fp.config.base.createUser }}groupadd -r {{= fp.config.base.user }} -g 10
 
 USER {{= fp.config.base.user }}
 {{?}}
+{{? fp.config.base.ubiUser }}
+# Run under user "{{= fp.config.base.ubiUser }}" and prepare for be running
+# under OpenShift, too
+RUN chown {{= fp.config.base.ubiUser }} {{= fp.config.base.baseDir }} \
+    && chmod "g+rwX" {{= fp.config.base.baseDir }} \
+    && chown {{= fp.config.base.ubiUser }}:root {{= fp.config.base.baseDir }} \
+    && chmod g+rw /etc/passwd \
+    && mkdir -p {{= fp.config.base.baseDir }}/data \
+    && chown {{= fp.config.base.ubiUser }} {{= fp.config.base.baseDir }}/run-java.sh
 
+# Gives uid
+USER {{= fp.config.base.ubiUser }}
+{{?}}
 CMD [ "{{= fp.config.base.baseDir }}/run-java.sh" ]
