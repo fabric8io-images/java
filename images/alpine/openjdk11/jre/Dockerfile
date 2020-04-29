@@ -1,4 +1,4 @@
-FROM alpine:3.10
+FROM alpine:3.11
 
 USER root
 
@@ -13,7 +13,7 @@ ENV JAVA_APP_DIR=/deployments \
 # according to http://www.2uo.de/myths-about-urandom/
 RUN apk add --update \
     curl \
-    openjdk11-jre=11.0.4_p4-r1 \
+    openjdk11-jre=11.0.5_p10-r0 \
  && rm /var/cache/apk/* \
  && echo "securerandom.source=file:/dev/urandom" >> /usr/lib/jvm/default-jvm/jre/lib/security/java.security
 

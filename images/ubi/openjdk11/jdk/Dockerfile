@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/ubi-minimal:8.1-398
+FROM registry.access.redhat.com/ubi8/ubi-minimal:8.2-267
 
 USER root
 
@@ -11,7 +11,7 @@ ENV JAVA_APP_DIR=/deployments \
 
 # /dev/urandom is used as random source, which is prefectly safe
 # according to http://www.2uo.de/myths-about-urandom/
-RUN microdnf install java-11-openjdk-headless-11.0.6.10-0.el8_1 \
+RUN microdnf install java-11-openjdk-headless-11.0.7.10-1.el8_1 \
       openssl curl ca-certificates \
     && echo "securerandom.source=file:/dev/urandom" >> /usr/lib/jvm/jre/lib/security/java.security \
     && microdnf clean all
