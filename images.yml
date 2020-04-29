@@ -5,7 +5,7 @@ fish-pepper:
     - version
     - type
   name: "fabric8/java"
-  build: "1.7.0"
+  build: "1.8.0"
 
 # Used for escaping in 'agent-bond-opts' where the same delimiters are used
 abSepOpen: "{{"
@@ -17,13 +17,13 @@ config:
       agent: "agent-bond"
       baseDir: "/deployments"
     alpine:
-      from: "alpine:3.10"
-      version: "3.10"
+      from: "alpine:3.11"
+      version: "3.11"
       description: "Alpine"
       javaPackage:
         7: 7.221.2.6.18-r0
-        8: 8.222.10-r0
-        11: 11.0.4_p4-r1
+        8: 8.242.08-r0
+        11: 11.0.5_p10-r0
     centos:
       from: "centos:7.7.1908"
       createUser: true
@@ -31,19 +31,19 @@ config:
       version: "7"
       description: "CentOS"
       javaPackage:
-        7: 1.7.0.251-2.6.21.0.el7_7
-        8: 1.8.0.242.b08-0.el7_7
-        11: 11.0.6.10-1.el7_7
+        7: 1.7.0.251-2.6.21.1.el7
+        8: 1.8.0.242.b08-1.el7
+        11: 11.0.6.10-3.el7
     ubi:
-      from: "registry.access.redhat.com/ubi8/ubi-minimal:8.1-398"
+      from: "registry.access.redhat.com/ubi8/ubi-minimal:8.2-267"
       createUser: false
       createUBIUser: true
       ubiUser: 1001
       version: "8.1"
       description: "UBI"
       javaPackage:
-        8: 1.8.0.242.b08-0.el8_1
-        11: 11.0.6.10-0.el8_1
+        8: 1.8.0.252.b09-2.el8_1
+        11: 11.0.7.10-1.el8_1
     jboss:
       deprecated: true
       from: "jboss/base-jdk"

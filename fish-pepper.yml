@@ -19,7 +19,7 @@ blocks:
   # run-java.sh for starting up Java processes
   - type: "git"
     url: "https://github.com/fabric8io-images/run-java-sh.git"
-    tag: v1.3.6
+    tag: v1.3.7
   # agent bond for export Jolokia and jmx_exporter data
   - type: "git"
     url: "https://github.com/fabric8io/agent-bond.git"
