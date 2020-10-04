@@ -25,15 +25,15 @@ config:
         8: 8.242.08-r0
         11: 11.0.5_p10-r0
     centos:
-      from: "centos:7.7.1908"
+      from: "centos:7.8.2003"
       createUser: true
       user: "jboss"
       version: "7"
       description: "CentOS"
       javaPackage:
-        7: 1.7.0.251-2.6.21.1.el7
-        8: 1.8.0.242.b08-1.el7
-        11: 11.0.6.10-3.el7
+        7: 1.7.0.261-2.6.22.2.el7_8
+        8: 1.8.0.262.b10-0.el7_8
+        11: 11.0.8.10-0.el7_8
     ubi:
       from: "registry.access.redhat.com/ubi8/ubi-minimal:8.2-267"
       createUser: false
