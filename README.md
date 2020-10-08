@@ -17,6 +17,12 @@ npm -g install fish-pepper
 fish-pepper
 ```
 
+Alternatively you can use also Docker for recreating the Docker build for the Java images:
+
+```
+docker run -it --rm -v `pwd`:/fp fabric8/fish-pepper
+```
+
 The Java base images come in different flavors:
 
 * Based on [CentOS 7](https://www.centos.org/) or
